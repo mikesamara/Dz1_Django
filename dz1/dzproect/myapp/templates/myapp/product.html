@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %} Список продуктов {% endblock %}
+
+{% block content %}
+
+<h1> Список бродуктов </h1>
+<table border="1xp">
+    <tr>
+        <td>
+            <p>Название товара</p>
+
+        </td>
+        <td>
+            <p>Описание товара</p>
+        </td>
+        <td><p>Стоимость товара</p></td>
+        <td><p>Количество товара</p></td>
+    </tr>
+    {% for i in list_product %}
+    <tr>
+        <td>
+            {{ i.name }}
+        </td>
+        <td>
+            {{ i.description }}
+        </td>
+        <td>{{ i.price }}
+        </td>
+        <td>
+           {{ i.count}}
+        </td>
+    </tr>
+
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}
+

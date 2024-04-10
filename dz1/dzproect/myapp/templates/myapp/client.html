@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %} Список клиентов {% endblock %}
+
+{% block content %}
+
+<h1> Список клиентов  </h1>
+<table border="1xp">
+    <tr>
+        <td>
+            <p>Имя клиента</p>
+
+        </td>
+        <td>
+            <p>почта клиента</p>
+        </td>
+        <td><p>телефон клиента</p></td>
+        <td><p>адрес клиента</p></td>
+    </tr>
+    {% for i in list_clients %}
+    <tr>
+        <td>
+            {{ i.name }}
+        </td>
+        <td>
+            {{ i.mail }}
+        </td>
+        <td>{{ i.number_phone }}
+        </td>
+        <td>
+           {{ i.adress}}
+        </td>
+    </tr>
+
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}
