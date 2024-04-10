@@ -5,49 +5,27 @@
 {% endblock %}
 
 {% block content %}
-<h1>Заказы пользователя</small> {{ client_name }}</h1>
+<h1>Заказы пользователя {{ client_name }}</h1>
 
-{% if orders %}
 
-{% for ord in orders %}
-{% ifchanged ord.order.id %}
-{% if not forloop.first %}
 </table>
 
-{% endif %}
 
+<table>
+    <thead>
+    <th>Товар</th>
+    <th>Количество</th>
+    <th>Цена</th>
 
-<h2>
+    </thead>
+    {% for ord in orders %}
+    <tr>
+        <td>{{ ord.name }}</td>
+        <td>{{ ord.count }}</td>
+        <td>{{ ord.price }}</td>
 
-    Заказ {{ ord.order.id }} от {{ ord.order.order_date }} на сумму&nbsp;<strong>{{ ord.order.cost }}
-
-</h2>
-
-
-        <table>
-            <thead>
-            <th>Товар</th>
-            <th>Количество</th>
-            <th>Цена</th>
-
-            </thead>
-            <tr>
-                <td>{{ ord.name }}</td>
-                <td>{{ ord.count }}</td>
-                <td>{{ ord.price }}</td>
-
-            </tr>
-            {% else %}
-            <tr>
-             <td>{{ ord.name }}</td>
-                <td>{{ ord.count }}</td>
-                <td>{{ ord.price }}</td>>
-            </tr>
-            {% endifchanged %}
-            {% endfor %}
-        </table>
-
-
-
+    </tr>
+    {% endfor %}
+</table>
 
 {% endblock %}

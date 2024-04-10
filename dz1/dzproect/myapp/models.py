@@ -43,7 +43,6 @@ class Order1(models.Model):
         return f'{self.client_order.name} - {self.product.name} - {self.total_price}'
 
 class OrderProducts(models.Model):
-
     order = models.ForeignKey(Order1, on_delete=models.CASCADE)
     product = models.ForeignKey(Product1, on_delete=models.PROTECT)
     product_count = models.IntegerField(default=1, validators=[MinValueValidator(1)])

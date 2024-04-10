@@ -60,17 +60,17 @@ def create_order(request):
 
 def order_client(request, client_id):
     client = get_object_or_404(Client1, pk=client_id)
-    order_prods = OrderProducts.objects.select_related('product').select_related('order').filter(
-        order__client_id=client_id).order_by('-order_id')
+    client_order = Order1.objects.select_related('product').select_related('order').filter(
+        client_order=client_id).order_by('-client_order_id')
 
-    order_prods = order_prods.annotate(prod_cost=F('product__price') * F('product_count'))
+
 
     context = {
         'client_name': client.name,
-        'orders': order_prods,
+        'client_order': client_order,
     }
 
-    return render(request, 'myapp/client_orders.html', context)
+    return render(request, 'myapp/client_ordsers.html', context)
 
 def client_last_orders(request, client_id):
     client = get_object_or_404(Client1, pk=client_id)
