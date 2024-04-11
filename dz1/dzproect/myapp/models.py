@@ -18,6 +18,7 @@ class Product1(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     count = models.IntegerField()
     date = models.DateField(auto_now_add=True)
+    image_product = models.ImageField(default='изображение')
 
 
 

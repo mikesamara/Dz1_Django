@@ -16,6 +16,7 @@
         </td>
         <td><p>Стоимость товара</p></td>
         <td><p>Количество товара</p></td>
+        <td><p>Изображение товара</p></td>
     </tr>
     {% for i in list_product %}
     <tr>
@@ -29,6 +30,9 @@
         </td>
         <td>
            {{ i.count}}
+        </td>
+         <td>
+           {{ i.image_product}}
         </td>
     </tr>
 

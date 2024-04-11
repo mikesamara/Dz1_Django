@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Редактирование продукта
+{% endblock %}
+
+{% block content %}
+
+<h2>Редактирование продукта</h2>
+<form action="" method="post">
+   {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit"> Сохранить </button>
+
+</form>
+{% endblock %}

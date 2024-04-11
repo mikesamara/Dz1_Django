@@ -2,11 +2,13 @@
 from datetime import  timedelta, datetime
 from random import random, choice, randint, uniform
 
-from click.core import F
+
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 import logging
+
 from .models import Client1, Product1, Order1, OrderProducts
+from .forms import ProductForm
 
 # -*- coding: utf-8 -*-
 
@@ -40,11 +42,17 @@ def create_product(request):
 
     for i in range(10):
         product = Product1(name=f'name{i}', description=f'description{i} ge dfg wer wed', price=f'{round(uniform(10.00, 100.00), 2)}',
-                         count=f'{randint(1, 10)}')
+                         count=f'{randint(1, 10)}', image_product=f'image{i}.png')
         product.save()
 
     list_product = Product1.objects.all()
     return render(request, 'myapp/product.html', {'list_product': list_product})
+
+
+def all_product(request):
+    list_product = Product1.objects.all()
+    return render(request, 'myapp/product.html', {'list_product': list_product})
+
 
 def create_order(request):
     products = Product1.objects.all()
@@ -104,6 +112,27 @@ def client_last_orders(request, client_id):
         'products_last_year': products_last_year
     })
 
+
+def product_image(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('all_product')
+    else:
+        form = ProductForm()
+    return render(request, 'myapp/image_product.html', {'form': form})
+
+def create_products(request, order_id):
+    product = get_object_or_404(Product1, pk=order_id)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('all_product')
+    else:
+        form = ProductForm()
+    return render(request, 'myapp/create_produc.html', {'form': form})
 
 
 
