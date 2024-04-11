@@ -7,7 +7,7 @@
 {% block content %}
 
 <h2>Редактирование продукта</h2>
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
    {% csrf_token %}
     {{ form.as_p }}
     <button type="submit"> Сохранить </button>

@@ -8,7 +8,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 import logging
 
 from .models import Client1, Product1, Order1, OrderProducts
-from .forms import ProductForm
+from .forms import ProductForm, ProductCreateForm
 
 # -*- coding: utf-8 -*-
 
@@ -126,12 +126,12 @@ def product_image(request):
 def create_products(request, order_id):
     product = get_object_or_404(Product1, pk=order_id)
     if request.method == 'POST':
-        form = ProductForm(request.POST, instance=product)
+        form = ProductCreateForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
             return redirect('all_product')
     else:
-        form = ProductForm()
+        form = ProductCreateForm()
     return render(request, 'myapp/create_produc.html', {'form': form})
 
 
