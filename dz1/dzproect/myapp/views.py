@@ -30,7 +30,7 @@ def create_client(request):
     logger.info("Заполняем таблицу клиентов")
 
     for i in range(10):
-        client = Client1(name=f'name{i}', mail=f'email{i}@mail.ru', number_phone=f'phone +375(29)20{i}-2{i}-{i}2',
+        client = Client1(name=f'name{i}', mail=f'email{i}@mail.ru', number_phone=f'+375(29)20{i}-2{i}-{i}2',
                          adress=f'пр-т Дзержинского{i + 1}')
         client.save()
     list_clients = Client1.objects.all()
